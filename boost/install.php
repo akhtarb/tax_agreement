@@ -12,10 +12,8 @@ function tax_agreement_install(&$content)
     $db->begin();
 
     try {
-        $slide = new \tax_agreement\Resource\Form;
+        $form = new \tax_agreement\Resource\Form;
         $st = $form->createTable($db);
-        $keyed_slide = $db->buildTable('ta_form');
-        $keyed_slide->create();
     } catch (\Exception $e) {
         if (isset($st) && $db->tableExists($st->getName())) {
             $st->drop();

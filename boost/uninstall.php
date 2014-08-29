@@ -10,9 +10,10 @@ function tax_agreement_uninstall(&$content)
 {
     $db = Database::newDB();
 
-    if ($db->tableExists('ta_form')) {
-        $tbl = $db->buildTable('ta_form');
+    if ($db->tableExists('tax_mainclass')) {
+        $tbl = $db->buildTable('tax_mainclass');
         $tbl->drop();
+        $content[] = 'Dropping table ta_mainclass';
     }
     return true;
 }

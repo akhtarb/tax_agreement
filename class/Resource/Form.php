@@ -81,6 +81,11 @@ class Form extends \Resource {
 
     }
 
+    public function getOrganizationName()
+    {
+        return $this->organization_name->get();
+    }
+
 
 }
 

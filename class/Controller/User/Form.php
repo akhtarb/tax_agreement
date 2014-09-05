@@ -41,9 +41,20 @@ class Form extends \Http\Controller {
 
     private function newForm(\Request $request)
     {
-        $template = new \Template(array());
+        $agreement = new \tax_agreement\Resource\Form;
+        $form = $this->createForm($agreement);
+        $form->appendCSS('bootstrap');
+        $template_data = $form->getInputStringArray();
+        $template = new \Template($template_data);
         $template->setModuleTemplate('tax_agreement', 'User/Form/form.html');
         return $template;
+    }
+
+    private function createForm(\tax_agreement\Resource\Form $agreement)
+    {
+        $form = new \Form;
+        $form->addTextField('organization_name', $agreement->getOrganizationName());
+        return $form;
     }
 
     private function listing(\Request $request)
